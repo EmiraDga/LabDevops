@@ -7,14 +7,17 @@ pipeline {
                 echo "Ok"
             }
         }
-    }
-    post {
-        always {
-            emailext(
-                body: 'A Test EMail',
-                subject: 'Test',
-                to: 'arctictestdevops@gmail.com' 
-            )
+        
+        stage('Email Notification') { 
+            steps {
+                script {
+                    emailext(
+                        body: 'A Test EMail',
+                        subject: 'Test',
+                        to: 'arctictestdevops@gmail.com' 
+                    )
+                }
+            }
         }
     }
 }
