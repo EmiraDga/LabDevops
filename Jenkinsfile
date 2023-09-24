@@ -1,23 +1,20 @@
 pipeline {
     agent any
-
+     
     stages {
-        stage('Build') {
+        stage('Ok') {
             steps {
-                echo "Building the project"
+                echo "Ok"
             }
         }
     }
-
     post {
-        success {
-            emailext subject: "Commit Notification",
-                     body: "A commit event has occurred in the Jenkins pipeline.",
-                     to: "arctictestdevops@gmail.com", 
-                     recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-        }
-        failure{
-            emailext body: 'email sent out from jenkins', subject: 'Test email FAILED!!!', to: 'arctictestdevops@gmail.com'
+        always {
+            emailext(
+                body: 'A Test EMail',
+                subject: 'Test',
+                to: 'arctictestdevops@gmail.com' 
+            )
         }
     }
 }
