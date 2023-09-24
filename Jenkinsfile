@@ -17,11 +17,10 @@ pipeline {
     
     post {
         always {
-            emailext(
-                subject: "Build Notification",
-                body: "Build Status: ${currentBuild.result}",
-                recipientProviders: [[$class: 'UpstreamCommitterRecipientProvider']],
-                to: "arctictestdevops@gmail.com" 
+              emailext(
+                subject: "Commit Notification",
+                body: "A commit has occurred in your project.",
+                to: "arctictestdevops@gmail.com" // Replace with the recipient's email
             )
         }
     }
