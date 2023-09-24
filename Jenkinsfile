@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo "here is the checkout !!"
+                echo "here is the checkout -"
              
             }
         }
@@ -17,7 +17,7 @@ pipeline {
                     def fileContent = readFile('README.txt')
 
                     emailext (
-                        subject: 'Nouveau commit dans le dépôt !!!',
+                        subject: 'Nouveau commit dans le dépôt',
                         body: fileContent,
                         to: 'arctictestdevops@gmail.com',
                         attachLog: true,
