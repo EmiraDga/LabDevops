@@ -11,7 +11,7 @@ pipeline {
 
     post {
         success {
-            echo "Build succeeded! This will run on successful build."
+            emailext body: 'Hello from jenkins', subject: 'Test email', to: 'arctictestdevops@gmail.com'
         }
     }
 }
