@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Check out your source code repository here
+                 echo "check out the project"
             }
         }
         
         stage('Build') {
             steps {
-                // Build your project
+                 echo "Building the project"
             }
         }
     }
@@ -21,7 +21,7 @@ pipeline {
                 subject: "Build Notification",
                 body: "Build Status: ${currentBuild.result}",
                 recipientProviders: [[$class: 'UpstreamCommitterRecipientProvider']],
-                to: "arctictestdevops@gmail.com" // Replace with recipient's email
+                to: "arctictestdevops@gmail.com" 
             )
         }
     }
