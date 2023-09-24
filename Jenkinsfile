@@ -12,7 +12,7 @@ pipeline {
     post {
         always {
             emailext(
-                body: 'A Test EMail',
+                body: 'A Test EMail!!!',
                 subject: 'Test',
                 to: 'arctictestdevops@gmail.com' 
             )
