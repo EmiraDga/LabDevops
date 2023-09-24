@@ -1,20 +1,27 @@
 pipeline {
     agent any
-
+     
     stages {
-        stage('Ok') {
+        stage('Checkout') {
             steps {
-                echo "Ok"
+                // Check out your source code repository here
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Build your project
             }
         }
     }
-
+    
     post {
         always {
             emailext(
-                body: 'A Test EMail!!!',
-                subject: 'Test',
-                to: 'arctictestdevops@gmail.com' 
+                subject: "Build Notification",
+                body: "Build Status: ${currentBuild.result}",
+                recipientProviders: [[$class: 'UpstreamCommitterRecipientProvider']],
+                to: "arctictestdevops@gmail.com" // Replace with recipient's email
             )
         }
     }
