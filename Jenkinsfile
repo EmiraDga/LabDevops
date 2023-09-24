@@ -1,20 +1,30 @@
+
+
 pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo "Building the project"
+                echo "here is the checkout"
+             
             }
         }
-    }
 
-    post {
-        success {
-            emailext body: 'Hello from jenkins', subject: 'Test email', to: 'arctictestdevops@gmail.com'
-        }
-        failure{
-            emailext body: 'email sent out from jenkins', subject: 'Test email FAILED!!!', to: 'arctictestdevops@gmail.com'
+        stage('Send Email') {
+            steps {
+                script {
+                    def fileContent = readFile('README.txt')
+
+                    emailext (
+                        subject: 'Nouveau commit dans le dépôt',
+                        body: fileContent,
+                        to: 'arctictestdevops@gmail.com',
+                        attachLog: true,
+                        mimeType: 'text/plain'
+                    )
+                }
+            }
         }
     }
 }
